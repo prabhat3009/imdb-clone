@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 
 import Carousel from 'react-multi-carousel';
 
-
-
 import Header from '../components/common/Header';
 import MoviesList from '../components/common/MoviesList';
 
@@ -11,7 +9,6 @@ import { categoryMovies } from '../services/api';
 import { POPULAR_API_URL, TOPRATED_API_URL, UPCOMING_API_URL, moviesType } from '../constants/constant';
 
 import { useLocation } from 'react-router-dom';
-
 
 import { Box, Typography, styled, Divider } from '@mui/material';
 
@@ -36,24 +33,30 @@ const StyledBanner = styled('img')({
 });
 
 const Title = styled(Typography)`
-color: #FFFFFF;
-font-size: 22px;
-font-weight: 900;
-text-align: center;
-`
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+`;
 
 const Component = styled(Box)`
-width: 80%;
-margin: auto;
+    width: 80%;
+    margin: auto;
 `;
 
 const Container = styled(Box)`
-background: #F5F5F5;
-padding: 10px;
-`
+    background: #F5F5F5;
+    padding: 10px;
+`;
+
+const Disclaimer = styled(Typography)`
+    color: grey;
+    font-size: 14px;
+    text-align: center;
+    margin: 40px 0 20px 0;
+`;
 
 const CategoryMovies = () => {
-
     const [movies, setMovies] = useState([]);
 
     const { search } = useLocation();
@@ -62,7 +65,7 @@ const CategoryMovies = () => {
         const getData = async (API_URL) => {
             let response = await categoryMovies(API_URL);
             setMovies(response.results);
-        }
+        };
 
         let API_URL;
 
@@ -75,34 +78,46 @@ const CategoryMovies = () => {
         }
 
         getData(API_URL);
-    }, [search])
-
+    }, [search]);
 
     return (
         <>
             <Header />
-            <Component><Carousel responsive={responsive} swipeable={false}
-                draggable={false} infinite={true} autoPlay={true} autoPlaySpeed={3000} keyBoardControl={true}>
-                {
-                    movies.map(movie => (
+            <Component>
+                <Carousel
+                    responsive={responsive}
+                    swipeable={false}
+                    draggable={false}
+                    infinite={true}
+                    autoPlay={true}
+                    autoPlaySpeed={3000}
+                    keyBoardControl={true}
+                >
+                    {movies.map((movie) => (
                         <>
-                            <StyledBanner src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='Banner' />
+                            <StyledBanner
+                                src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                                alt='Banner'
+                            />
                             <Title>{movie.original_title}</Title>
                         </>
-
-                    ))
-                }
-            </Carousel>
+                    ))}
+                </Carousel>
                 <Container>
                     <Typography variant='h6'>IMDb Charts</Typography>
                     <Typography variant='h4'>IMDb {moviesType[search.split('=')[1]]} Movies</Typography>
-                    <Typography style={{ fontSize: 12, margin: 5 }}>IMDb Top {movies.length} as rated by regular IMDb voters.</Typography>
+                    <Typography style={{ fontSize: 12, margin: 5 }}>
+                        IMDb Top {movies.length} as rated by regular IMDb voters.
+                    </Typography>
                     <Divider />
                     <MoviesList movies={movies} />
+                    <Disclaimer>
+                        This is a personal portfolio project and is not affiliated with IMDb.
+                    </Disclaimer>
                 </Container>
             </Component>
         </>
-    )
-}
+    );
+};
 
 export default CategoryMovies;

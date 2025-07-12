@@ -12,30 +12,37 @@ import { NOWPLAYING_API_URL } from '../constants/constant';
 import { Box, Typography, styled } from '@mui/material';
 
 const Wrapper = styled(Box)`
-display: flex;
-padding: 20px 0;
-`
+    display: flex;
+    padding: 20px 0;
+`;
+
 const Component = styled(Box)`
-padding: 0 115px;`
+    padding: 0 115px;
+`;
 
 const Featured = styled(Typography)`
-color: #FEBD00;
-font-size: 22px;
-font-weight: 800;
-`
+    color: #FEBD00;
+    font-size: 22px;
+    font-weight: 800;
+`;
+
+const Disclaimer = styled(Typography)`
+    color: grey;
+    font-size: 14px;
+    text-align: center;
+    margin: 40px 0 20px 0;
+`;
 
 const Home = () => {
-
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
             let response = await categoryMovies(NOWPLAYING_API_URL);
             setMovies(response.results);
-        }
+        };
         getData();
-
-    }, [])
+    }, []);
 
     return (
         <>
@@ -47,9 +54,12 @@ const Home = () => {
                 </Wrapper>
                 <Featured>Featured today</Featured>
                 <Slide movies={movies} />
+                <Disclaimer>
+                    This is a personal portfolio project and is not affiliated with IMDb.
+                </Disclaimer>
             </Component>
         </>
-    )
-}
+    );
+};
 
 export default Home;
