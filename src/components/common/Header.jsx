@@ -73,7 +73,7 @@ const Header = () => {
                     <BookmarkAdd />
                     <Typography>Watchlist</Typography>
                 </Box>
-                <Typography style={{ fontSize: 15, fontWeight: 600 }}>Sign In</Typography>
+                <Typography style={{ fontSize: 15, fontWeight: 600 }}>SignIn</Typography>
                 <Box>
                     <Typography>EN</Typography>
                     <ExpandMore />
