@@ -6,7 +6,7 @@ A React-based application that replicates the core functionality of the IMDB mov
 
 ## 📝 Important Note
 
-This project was written in **pure React** using the official React documentation at that time. The code might appear dated by today's standards, but it was developed with genuine understanding and without the assistance of any Large Language Models (LLMs). This represents a pure learning exercise in understanding React fundamentals, component architecture, and building interactive web applications.
+This project was written in **pure React** using the official React documentation at that time. The code might appear outdated by today's standards, but it was developed with genuine understanding and without the assistance of any Large Language Models (LLMs). This represents a pure learning exercise in understanding React fundamentals, component architecture, and building interactive web applications.
 
 ## 🛠 Tech Stack
 

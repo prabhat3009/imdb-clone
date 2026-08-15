@@ -2,7 +2,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-import { Box, Typography, styled } from '@mui/material';
+import { Typography, styled } from '@mui/material';
 
 const responsive = {
     desktop: {
@@ -26,13 +26,6 @@ margin-top: 20px;
 const Title = styled(Typography)`
 color: #FFFFFF;`
 
-const Featured = styled(Typography)`
-color: #FEBD00;
-font-size: 20px;
-`
-
-
-
 const Slide = ({ movies }) => {
     return (
 
@@ -41,12 +34,10 @@ const Slide = ({ movies }) => {
 
             {
                 movies.map(movie => (
-                    <>
-
+                    <div key={movie.id}>
                         <StyledBanner src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt='Banner' />
                         <Title>{movie.original_title}</Title>
-                    </>
-
+                    </div>
                 ))
             }
         </Carousel>
